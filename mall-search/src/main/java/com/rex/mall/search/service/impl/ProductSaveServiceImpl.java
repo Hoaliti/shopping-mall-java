@@ -45,12 +45,12 @@ public class ProductSaveServiceImpl implements ProductSaveService {
         }
         BulkResponse bulk = restHighLevelClient.bulk(bulkRequest, MallElasticSearchConfig.COMMON_OPTIONS);
 
-        // TODO 如果批量错误
+        // TODO if has failures
         boolean b = bulk.hasFailures();
         List<String> collect = Arrays.stream(bulk.getItems()).map(item -> {
             return item.getId();
         }).collect(Collectors.toList());
-        log.error("商品上架错误:{}",collect);
+        log.info("Product List success:{}",collect);
 
         return b;
     }

@@ -325,6 +325,14 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
         }else{
             // invoke failed
             // TODO 7. retry
+
+            // feign work flow
+
+            /**
+             * 1. Construct Request data, revert object to the JSON
+             *
+             * 2.
+             */
         }
 
     }
