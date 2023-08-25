@@ -50,7 +50,7 @@ public class ProductSaveServiceImpl implements ProductSaveService {
         List<String> collect = Arrays.stream(bulk.getItems()).map(item -> {
             return item.getId();
         }).collect(Collectors.toList());
-        log.info("Product List success:{}",collect);
+        log.info("Product List success:{}, return data: {}",collect,bulk.toString());
 
         return b;
     }

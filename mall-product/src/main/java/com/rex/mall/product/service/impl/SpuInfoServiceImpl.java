@@ -1,5 +1,6 @@
 package com.rex.mall.product.service.impl;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.rex.common.constant.ProductConstant;
 import com.rex.common.to.SkuReductionTo;
 import com.rex.common.to.SpuBoundTo;
@@ -267,8 +268,9 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
         // TODO 1. 远程调用，库存系统查询是否有库存
         Map<Long, Boolean> stockMap = null;
         try{
-            R<List<SkuHasStockVo>> skusHasStock = wareFeignService.getSkusHasStock(skuIdList);
-            stockMap = skusHasStock.getData().stream().collect(Collectors.toMap(
+            R r = wareFeignService.getSkusHasStock(skuIdList);
+            TypeReference<List<SkuHasStockVo>> typeReference =  new TypeReference<List<SkuHasStockVo>>(){};
+            stockMap = r.getData(typeReference).stream().collect(Collectors.toMap(
                     SkuHasStockVo::getSkuId, SkuHasStockVo::isHasStock
             ));
 
@@ -330,8 +332,20 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
 
             /**
              * 1. Construct Request data, revert object to the JSON
+             *      RequestTemplate template = this.buildTemplateFromArgs.create(argv);
+             * 2. Send Request and excute
+             *      this.executeAndDecode(template, options);
              *
-             * 2.
+             * 3. Execution has its own retryer
+             *      while(true) {
+             *             try {
+             *                 return this.executeAndDecode(template, options);
+             *             } catch (RetryableException var9) {
+             *                 RetryableException e = var9;
+             *
+             *                 try {
+             *                     retryer.continueOrPropagate(e);
+             *                    }
              */
         }
 
