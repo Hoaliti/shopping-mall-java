@@ -1,6 +1,5 @@
 package com.rex.mall.product.service.impl;
 
-import com.alibaba.nacos.shaded.org.checkerframework.checker.units.qual.A;
 import com.rex.mall.product.entity.AttrEntity;
 import com.rex.mall.product.service.AttrService;
 import com.rex.mall.product.vo.AttrGroupRelationVo;

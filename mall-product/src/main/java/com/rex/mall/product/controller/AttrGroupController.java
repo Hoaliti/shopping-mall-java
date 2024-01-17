@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-import com.alibaba.nacos.shaded.org.checkerframework.checker.units.qual.A;
 import com.rex.mall.product.entity.AttrEntity;
 import com.rex.mall.product.service.AttrAttrgroupRelationService;
 import com.rex.mall.product.service.AttrService;
